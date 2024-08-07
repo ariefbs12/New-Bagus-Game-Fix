@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        width: '50%', // Ensures each column takes up half of the screen width
     },
     playerName: {
         color: '#373737',

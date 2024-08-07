@@ -11,7 +11,6 @@ export default function RockPaper() {
     const [result, setResult] = useState("");
     const [canPlay, setPlay] = useState(true);
 
-    // For animation
     const fadeAnimation = useRef(new Animated.Value(1)).current;
 
     function play(choice) {
@@ -91,6 +90,7 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         backgroundColor: '#e8eaed',
+        justifyContent: 'space-between', // Ensure content is spaced evenly
     },
     result: {
         height: 100,

@@ -45,8 +45,10 @@ const styles = StyleSheet.create({
   actions: {
     height: 100,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between', // Use space-between instead of space-around
     alignItems: 'center',
+    width: '100%', // Ensure the container takes full width
+    paddingHorizontal: 20, // Add padding to ensure spacing from screen edges
   },
   actionButton: {
     width: 64,
