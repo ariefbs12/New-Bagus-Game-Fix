@@ -59,13 +59,13 @@ const SignInScreen = () => {
         <TextInput
           value={email}
           onChangeText={setEmail}
-          placeholder="Email"
+          placeholder="masukan email"
           style={styles.input}
         />
         <TextInput
           value={password}
           onChangeText={setPassword}
-          placeholder="Password"
+          placeholder="masukan password"
           secureTextEntry
           style={styles.input}
         />
@@ -74,8 +74,8 @@ const SignInScreen = () => {
           <Text style={styles.btnTitle}>Masuk</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.transparentBtn} onPress={signUp}>
-          <Text style={styles.transparentBtnTitle}>Belum punya akun? </Text>
-          <Text style={styles.boldText}>Daftar</Text>
+          <Text style={styles.transparentBtnTitle}>Belum punya akun? 
+          <Text style={styles.boldText}> Daftar</Text></Text>
         </TouchableOpacity>
       </View>
     </View>

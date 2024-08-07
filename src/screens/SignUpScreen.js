@@ -47,30 +47,30 @@ const SignUpScreen = () => {
         <TextInput
           value={email}
           onChangeText={setEmail}
-          placeholder="Email"
+          placeholder="masukan email"
           style={styles.input}
         />
         <TextInput
           value={password}
           onChangeText={setPassword}
-          placeholder="Password"
+          placeholder="masukan password"
           secureTextEntry
           style={styles.input}
         />
         <TextInput
           value={password}
           onChangeText={setPassword}
-          placeholder="Confirm Password"
+          placeholder="masukan ulang password"
           secureTextEntry
           style={styles.input}
         />
         <TouchableOpacity style={styles.btn} onPress={signUp}>
-          <Text style={styles.btnTitle}>Sign Up</Text>
+          <Text style={styles.btnTitle}>Daftar</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.transparentBtn} onPress={signIn}>
           <Text style={styles.transparentBtnTitle}>
-            Already have an account?{" "}
-            <Text style={styles.boldText}>Sign In</Text>
+            Sudah Punya Akun?{" "}
+            <Text style={styles.boldText}> Masuk</Text>
           </Text>
         </TouchableOpacity>
       </View>
