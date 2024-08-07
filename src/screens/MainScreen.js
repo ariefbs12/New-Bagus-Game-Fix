@@ -1,18 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { signOut } from 'firebase/auth';
 import colors from '../themes/colors';
 import { useNavigation } from '@react-navigation/native';
-import { auth } from '../../firebaseConfig';  // Import auth correctly
 import RockPaper from '../../components/RockPaper';
+import { auth } from '../../firebaseConfig';  // Import auth correctly
 
 const MainScreen = () => {
   const navigation = useNavigation();
 
   const signOutHandler = async () => {
     try {
-      await signOut(auth);  // Use auth directly
-      navigation.replace('SignIn');
+      await signOut(auth);
+      navigation.replace('SignInScreen');
     } catch (error) {
       console.error(error);
     }
@@ -31,7 +31,7 @@ const MainScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between', // Adjust to balance spacing
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   btn: {

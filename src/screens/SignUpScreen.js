@@ -34,6 +34,8 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Sign Up</Text>
+      <View style={styles.line} />
       <TextInput
         value={email}
         onChangeText={setEmail}
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     color: colors.textColors.black,
     fontWeight: "800",
     fontSize: 18,
+    marginBottom: 16, // Adding some space below the title
   },
   line: {
     width: 87,
