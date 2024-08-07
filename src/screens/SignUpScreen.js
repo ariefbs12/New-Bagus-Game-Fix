@@ -8,17 +8,17 @@ import {
 } from "react-native";
 import colors from "../themes/colors";
 import { useNavigation } from "@react-navigation/native";
-import Firebase from "../../firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebaseConfig"; // Import auth directly from firebaseConfig
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const SignInScreen = () => {
+const SignUpScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signIn = async () => {
+  const signUp = async () => {
     try {
-      await signInWithEmailAndPassword(Firebase.auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password); // Use auth directly
       navigation.reset({
         index: 0,
         routes: [{ name: "MainScreen" }],
@@ -28,8 +28,8 @@ const SignInScreen = () => {
     }
   };
 
-  const signUp = () => {
-    navigation.navigate("SignUpScreen");
+  const signIn = () => {
+    navigation.goBack();
   };
 
   return (
@@ -47,11 +47,11 @@ const SignInScreen = () => {
         secureTextEntry
         style={styles.input}
       />
-      <TouchableOpacity style={styles.btn} onPress={signIn}>
-        <Text style={styles.btnTitle}>Sign In</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={signUp}>
         <Text style={styles.btnTitle}>Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.btn} onPress={signIn}>
+        <Text style={styles.btnTitle}>Sign In</Text>
       </TouchableOpacity>
     </View>
   );
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default SignUpScreen;

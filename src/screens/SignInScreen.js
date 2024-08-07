@@ -8,28 +8,28 @@ import {
 } from "react-native";
 import colors from "../themes/colors";
 import { useNavigation } from "@react-navigation/native";
-import Firebase from "../../firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebaseConfig"; // Import auth from firebaseConfig
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-const SignUpScreen = () => {
+const SignInScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signUp = async () => {
+  const signIn = async () => {
     try {
-        await createUserWithEmailAndPassword(Firebase.auth, email, password);
-        navigation.reset({
-            index: 0,
-            routes: [{ name: "MainScreen" }],
-          });
-      } catch (error) {
-        console.error(error);
-      }
+      await signInWithEmailAndPassword(auth, email, password);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Main" }], // Updated to match the screen name in App.js
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const signIn = () => {
-    navigation.goBack();
+  const signUp = () => {
+    navigation.navigate("SignUp"); // Updated to match the screen name in App.js
   };
 
   return (
@@ -47,11 +47,11 @@ const SignUpScreen = () => {
         secureTextEntry
         style={styles.input}
       />
-      <TouchableOpacity style={styles.btn} onPress={signUp}>
-        <Text style={styles.btnTitle}>Sign Up</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.btn} onPress={signIn}>
         <Text style={styles.btnTitle}>Sign In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.btn} onPress={signUp}>
+        <Text style={styles.btnTitle}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+export default SignInScreen;
