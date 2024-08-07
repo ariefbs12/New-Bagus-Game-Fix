@@ -1,34 +1,35 @@
-import {View,Text, TextComponent, StyleSheet} from 'react-native'
-import {FontAwesome5} from '@expo/vector-icons'
-import React from 'react'
+import { View, Text, StyleSheet } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import React from 'react';
 
-const icons = ['hand-rock','hand-paper','hand-scissors']
-const DisplayResult = ({userChoice, computerChoice}) => {
+const icons = ['hand-rock', 'hand-paper', 'hand-scissors'];
+
+const DisplayResult = ({ userChoice, computerChoice }) => {
     return (
         <>
-        <View style = {styles.column}>
-            <FontAwesome5 
-                name={ICONS[userChoice -1]}
-                size={64}
-                color = '#f9d835'
-                solid
-                style = {userChoice === 3 ? styles.scissorsLeftIcon : styles.leftIcon}
+            <View style={styles.column}>
+                <FontAwesome5 
+                    name={icons[userChoice - 1]}
+                    size={64}
+                    color='#f9d835'
+                    solid
+                    style={userChoice === 3 ? styles.scissorsLeftIcon : styles.leftIcon}
                 />
-                    <Text style={styles.playerName}> You </Text>
-        </View>
+                <Text style={styles.playerName}>You</Text>
+            </View>
 
-        <View style={styles.column}>
-            <FontAwesome5
-                name = {ICONS[computerChoice -1]}
-                size={64}
-                color="#f9d835"
-                solid
-                style={computerChoice === 3 ? styles.scissorsRicghtIcon : styles.rightIcon}
-            />
-            <Text style = {StyleSheet.playerName}> Computer </Text>
-        </View>
+            <View style={styles.column}>
+                <FontAwesome5
+                    name={icons[computerChoice - 1]}
+                    size={64}
+                    color="#f9d835"
+                    solid
+                    style={computerChoice === 3 ? styles.scissorsRightIcon : styles.rightIcon}
+                />
+                <Text style={styles.playerName}>Computer</Text>
+            </View>
         </>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
     },
     playerName: {
         color: '#373737',
-        fontSize:16,
-        marginTop:16,
+        fontSize: 16,
+        marginTop: 16,
     },
     leftIcon: {
         transform: [{rotateZ: '80deg'}],
@@ -48,12 +49,11 @@ const styles = StyleSheet.create({
     scissorsLeftIcon: {
         transform: [{rotateZ: '180deg'}, {rotateX: '180deg'}],
     },
-    rifghtIcon: {
-        transform: [
-            {rotateZ: '180deg'},
-            {rotateY: '180deg'},
-            {rotateX: '180deg'},
-        ],
+    rightIcon: {
+        transform: [],
+    },
+    scissorsRightIcon: {
+        transform: [{rotateZ: '180deg'}, {rotateY: '180deg'}, {rotateX: '180deg'}],
     },
 });
 

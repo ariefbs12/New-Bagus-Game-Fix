@@ -1,8 +1,7 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import RockPaper from './components/RockPaper';
 import { StatusBar } from 'expo-status-bar';
+import { View, StyleSheet } from 'react-native';
+import RockPaper from './components/RockPaper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   return (

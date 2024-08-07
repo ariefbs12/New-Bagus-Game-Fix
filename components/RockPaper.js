@@ -11,24 +11,32 @@ export default function RockPaper() {
     const [result, setResult] = useState("");
     const [canPlay, setPlay] = useState(true);
 
-    // For Animation
-    const fadeAnimation = useRef(new useAnimatedValue(1)).current;
 
-    function play(choice) {
-        const randomComputerChoice = Math.floor(Math.random()*3);
-        let result = "";
+    
+   // Untuk animasi
+   const fadeAnimation = useRef(new Animated.Value(1)).current;
 
-        if(playerChoice === computerChoice){
-            result = "IT'S A TIE!";
-        }
-        else if (choice === 0){
-            result = (randomComputerChoice === "scissors") ? "YOU WIN!" : "YOU LOSE!";}
-        else if (choice === 1){
-            result = (randomComputerChoice === "rock") ? "YOU WIN!" : "YOU LOSE!";}
-        else if (choice === 2){
-            result = (randomComputerChoice === "paper") ? "YOU WIN!" : "YOU LOSE!";}
+    // 3 pilihan
+    //1 = ROCK
+    //2 = PAPER
+    //3 = GUNTING
+
         
-            setUserChoice(choice);
+        function play(choice) {
+            const randomComputerChoice = Math.floor(Math.random()*3)+1;
+            let result = "";
+
+
+        if(choice === randomComputerChoice){
+            result = "Imbang!";}
+        else if (choice === 1 && randomComputerChoice === 3 ) {result = "Menang!";}
+        else if (choice === 2 && randomComputerChoice === 1 ) {result = "Menang!";}
+        else if (choice === 3 && randomComputerChoice === 2 ) {result = "Menang!";}
+        
+        else { result = "Kalah!";}
+
+
+        setUserChoice(choice);
             setComputerChoice(randomComputerChoice);
 
             // wait animation
@@ -55,11 +63,12 @@ export default function RockPaper() {
             setTimeout(() => {
                 setPlay(true);
             }, 600);
+        
         }
 
         // return the view 
         return(
-            <SafeAreaView style={StyleSheet.container}>
+            <SafeAreaView style={styles.container}>
                 <Header/>
                 <View style = {styles.content}>
                     <View style = {styles.result}>
@@ -82,8 +91,9 @@ export default function RockPaper() {
                     <Actions play = {play} canPlay={canPlay}/>
                 </View>
             </SafeAreaView>
-        )
-    }
+        );
+}
+    
 
 const styles = StyleSheet.create({
     container: {
@@ -106,14 +116,14 @@ const styles = StyleSheet.create({
     },
     screen: {
         flex: 1,
-        flexDirectory: 'row',
+        flexDirection: 'row',
     },
     readyText: {
         marginTop: -48,
         alignSelf: 'center',
         textAlign: 'center',
         width: '100%',
-        fontSize: -48, 
+        fontSize: 48, 
         fontWeight: 'bold',
     }
 });
