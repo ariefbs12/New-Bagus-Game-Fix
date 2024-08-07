@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { onAuthStateChanged } from "firebase/auth";
 
 import colors from "./src/themes/colors";
+import SplashScreen from "./src/screens/SplashScreen";
 import SignInScreen from "./src/screens/SignInScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import MainScreen from "./src/screens/MainScreen";
@@ -47,11 +48,19 @@ export default function App() {
         theme={{ colors: { background: colors.textColors.white } }}
       >
         <Stack.Navigator
+          initialRouteName="Splash"
           screenOptions={{
             headerTitleAlign: "center",
             headerStyle: { backgroundColor: colors.textColors.white },
           }}
         >
+          <Stack.Screen
+            name="Splash"
+            component={SplashScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
           {user ? (
             <Stack.Screen
               name="MainScreen"
