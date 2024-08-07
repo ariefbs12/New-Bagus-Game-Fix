@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import colors from "../themes/colors";
 import { useNavigation } from "@react-navigation/native";
@@ -34,27 +35,45 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-      <View style={styles.line} />
-      <TextInput
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Email"
-        style={styles.input}
+      <Image
+        source={require("../../assets/background.png")}
+        style={styles.backgroundImage}
       />
-      <TextInput
-        value={password}
-        onChangeText={setPassword}
-        placeholder="Password"
-        secureTextEntry
-        style={styles.input}
-      />
-      <TouchableOpacity style={styles.btn} onPress={signUp}>
-        <Text style={styles.btnTitle}>Sign Up</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.btn} onPress={signIn}>
-        <Text style={styles.btnTitle}>Sign In</Text>
-      </TouchableOpacity>
+      <View style={styles.contentContainer}>
+        <Image
+          source={require("../../assets/group.png")}
+          style={styles.groupImage}
+        />
+        <TextInput
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Email"
+          style={styles.input}
+        />
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Password"
+          secureTextEntry
+          style={styles.input}
+        />
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Confirm Password"
+          secureTextEntry
+          style={styles.input}
+        />
+        <TouchableOpacity style={styles.btn} onPress={signUp}>
+          <Text style={styles.btnTitle}>Sign Up</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.transparentBtn} onPress={signIn}>
+          <Text style={styles.transparentBtnTitle}>
+            Already have an account?{" "}
+            <Text style={styles.boldText}>Sign In</Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -62,36 +81,43 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  title: {
-    color: colors.textColors.black,
-    fontWeight: "800",
-    fontSize: 18,
-    marginBottom: 16, // Adding some space below the title
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
-  line: {
-    width: 87,
-    height: 4,
-    borderRadius: 4,
-    backgroundColor: colors.primary.blue,
-    marginTop: 20,
-    marginBottom: 48,
+  contentContainer: {
+    width: "100%",
+    alignItems: "center",
+  },
+  groupImage: {
+    width: 200,
+    height: 200,
+    marginBottom: 20,
   },
   input: {
     height: 56,
-    width: "100%",
-    marginBottom: 32,
+    width: "80%",
+    marginBottom: 20,
     paddingHorizontal: 16,
     paddingVertical: 18,
-    backgroundColor: colors.textColors.whiteGrey,
+    backgroundColor: colors.textColors.white,
     borderRadius: 14,
     fontWeight: "600",
     color: colors.textColors.black,
   },
   btn: {
-    backgroundColor: colors.primary.blue,
+    backgroundColor: colors.secondary.yellow,
     height: 56,
+    width: "80%",
     borderRadius: 14,
     justifyContent: "center",
     alignItems: "center",
@@ -100,6 +126,21 @@ const styles = StyleSheet.create({
   btnTitle: {
     color: colors.textColors.white,
     fontWeight: "600",
+  },
+  transparentBtn: {
+    borderWidth: 0,
+    width: "80%",
+    height: 56,
+    borderRadius: 14,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  transparentBtnTitle: {
+    color: colors.textColors.white,
+    fontWeight: "600",
+  },
+  boldText: {
+    fontWeight: "700",
   },
 });
 
