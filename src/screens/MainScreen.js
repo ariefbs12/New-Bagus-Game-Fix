@@ -22,7 +22,7 @@ const MainScreen = () => {
     <View style={styles.container}>
       <RockPaper />
       <TouchableOpacity style={styles.btn} onPress={signOutHandler}>
-        <Text style={styles.btnTitle}>Sign Out</Text>
+        <Text style={styles.btnTitle}>Keluar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -33,9 +33,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: '#Fbbe57', // Optional: Background color for the main screen
   },
   btn: {
-    backgroundColor: colors.primary.blue,
+   backgroundColor: '#008B8B',
     height: 56,
     width: 300,
     borderRadius: 14,

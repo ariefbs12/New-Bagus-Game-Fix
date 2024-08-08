@@ -11,6 +11,7 @@ import SignUpScreen from "./src/screens/SignUpScreen";
 import MainScreen from "./src/screens/MainScreen";
 import OnBoardingScreen from "./src/screens/OnBoardingScreen";
 import { auth } from "./firebaseConfig";
+import colors from "./src/themes/colors";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,7 +49,8 @@ export default function App() {
           initialRouteName="Splash"
           screenOptions={{
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#ffffff" },
+            headerStyle: { backgroundColor: colors.secondary.yellow },
+            headerTitleStyle: { color: "#ffffff" },
           }}
         >
           <Stack.Screen
@@ -70,6 +72,7 @@ export default function App() {
             component={SignInScreen}
             options={{
               headerTitle: "Sign In",
+              
             }}
           />
           <Stack.Screen

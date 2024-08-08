@@ -1,11 +1,13 @@
+
 const colors = {
     primary: {
       blue: '#2C69E6',
       dark: '#1C1E21',
-      green: '#21BF73',
+      green: '#32D609',
+      
     },
     secondary: {
-      yellow: '#FFD500',
+      yellow: '#F9AD3C',
       red: '#FF414D',
       purple: '#B620E0',
       orange: '#FF6B00',
@@ -19,6 +21,10 @@ const colors = {
       lineDark: '#404040',
       whiteGrey: '#F5F5F7',
       white: '#FFFFFF',
+      
+    },
+    error: {
+      red: '#FF0004',
     },
     navigationTheme: {
       dark: false,

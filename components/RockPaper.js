@@ -1,16 +1,15 @@
 import React, { useState, useRef } from "react";
-import { StyleSheet, SafeAreaView, Text, View, Animated } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, Animated, ImageBackground } from 'react-native';
 import Constants from 'expo-constants';
 import DisplayResult from './DisplayResult';
 import Actions from './Actions';
-import Header from './Header';
+import colors from "../src/themes/colors";
 
 export default function RockPaper() {
     const [userChoice, setUserChoice] = useState(0);
     const [computerChoice, setComputerChoice] = useState(0);
     const [result, setResult] = useState("");
     const [canPlay, setPlay] = useState(true);
-
     const fadeAnimation = useRef(new Animated.Value(1)).current;
 
     function play(choice) {
@@ -18,15 +17,15 @@ export default function RockPaper() {
         let result = "";
 
         if (choice === randomComputerChoice) {
-            result = "Imbang!";
-        } else if (choice === 1 && randomComputerChoice === 3) {
-            result = "Menang!";
-        } else if (choice === 2 && randomComputerChoice === 1) {
-            result = "Menang!";
-        } else if (choice === 3 && randomComputerChoice === 2) {
-            result = "Menang!";
+            result = "SERI!";
+        } else if (
+            (choice === 1 && randomComputerChoice === 3) ||
+            (choice === 2 && randomComputerChoice === 1) ||
+            (choice === 3 && randomComputerChoice === 2)
+        ) {
+            result = "MENANG!";
         } else {
-            result = "Kalah!";
+            result = "KALAH!";
         }
 
         setUserChoice(choice);
@@ -55,52 +54,69 @@ export default function RockPaper() {
         }, 600);
     }
 
+    const resultTextStyle = [
+        styles.resultText,
+        result === "KALAH!" && { color: colors.error.red },
+        result === "MENANG!" && { color: colors.primary.green },
+        result === "SERI!" && { color: colors.secondary.yellow },
+    
+    ];
+
     return (
-        <SafeAreaView style={styles.container}>
-            <Header />
-            <View style={styles.content}>
-                <View style={styles.result}>
-                    <Animated.Text
-                        style={[styles.resultText, { opacity: fadeAnimation }]}
-                    >
-                        {result}
-                    </Animated.Text>
+        <ImageBackground source={require('../assets/backgroundgamescreen.png')} style={styles.background}>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.content}>
+                    <View style={styles.result}>
+                        <Animated.Text
+                            style={[resultTextStyle, { opacity: fadeAnimation }]}
+                        >
+                            {result}
+                        </Animated.Text>
+                    </View>
+                    <View style={styles.screen}>
+                        {!result ? (
+                            <Text style={styles.readyText}> ? </Text>
+                        ) : (
+                            <DisplayResult
+                                userChoice={userChoice}
+                                computerChoice={computerChoice}
+                            />
+                        )}
+                    </View>
+                    <Actions play={play} canPlay={canPlay} />
                 </View>
-                <View style={styles.screen}>
-                    {!result ? (
-                        <Text style={styles.readyText}>Ayo Bermain</Text>
-                    ) : (
-                        <DisplayResult
-                            userChoice={userChoice}
-                            computerChoice={computerChoice}
-                        />
-                    )}
-                </View>
-                <Actions play={play} canPlay={canPlay} />
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Constants.statusBarHeight,
+        marginTop: Constants.statusBarHeight,
+    },
+    background: {
+        flex: 1,
+        resizeMode: "cover",
+        width: '100%',
     },
     content: {
         flex: 1,
-        backgroundColor: '#e8eaed',
-        justifyContent: 'space-between', // Ensure content is spaced evenly
+        justifyContent: 'space-between',
     },
     result: {
         height: 100,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: 20,
     },
     resultText: {
         fontSize: 48,
         fontWeight: 'bold',
+        color: 'white',
+        padding: 10,
+        borderRadius: 10,
+        textAlign: 'center',
     },
     screen: {
         flex: 1,
@@ -112,5 +128,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 48,
         fontWeight: 'bold',
+        color: 'white',
+        padding: 20,
+        borderWidth: 5,
+        borderColor: 'white',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        borderRadius: 15,
     },
 });

@@ -1,10 +1,9 @@
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
-import { FontAwesome5 } from '@expo/vector-icons';
 
 const Actions = ({ play, canPlay, playerChoice }) => {
   return (
-    <View style={styles.actions}>
+    <View style={styles.actionsContainer}>
       <TouchableOpacity
         disabled={!canPlay}
         style={[
@@ -13,7 +12,10 @@ const Actions = ({ play, canPlay, playerChoice }) => {
         ]}
         onPress={() => play(1)}
       >
-        <FontAwesome5 name={'hand-rock'} size={32} color='#6a5300' />
+        <Image
+          source={require('../assets/hand-rock.png')}
+          style={styles.actionImage}
+        />
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -24,7 +26,10 @@ const Actions = ({ play, canPlay, playerChoice }) => {
         ]}
         onPress={() => play(2)}
       >
-        <FontAwesome5 name={'hand-paper'} size={32} color='#6a5300' />
+        <Image
+          source={require('../assets/hand-paper.png')}
+          style={styles.actionImage}
+        />
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -35,32 +40,40 @@ const Actions = ({ play, canPlay, playerChoice }) => {
         ]}
         onPress={() => play(3)}
       >
-        <FontAwesome5 name={'hand-scissors'} size={32} color='#6a5300' style={{ transform: [{ rotate: '67deg' }] }} />
+        <Image
+          source={require('../assets/hand-scissors.png')}
+          style={styles.actionImage}
+        />
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  actions: {
-    height: 100,
+  actionsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between', // Use space-between instead of space-around
+    justifyContent: 'space-around',
+    marginBottom: 30,
     alignItems: 'center',
-    width: '100%', // Ensure the container takes full width
-    paddingHorizontal: 20, // Add padding to ensure spacing from screen edges
   },
   actionButton: {
-    width: 64,
-    height: 64,
+    width: 70,
+    height: 70,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f9d835',
-    borderRadius: 32,
+    backgroundColor: '#008B8B',
+    borderRadius: 20,
+    marginTop:45,
   },
   selectedButton: {
     borderColor: '#ffcc00',
-    borderWidth: 2,
+    borderWidth: 1,
+  },
+  actionImage: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+    marginTop: 30.
   }
 });
 

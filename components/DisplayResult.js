@@ -1,60 +1,59 @@
-import { View, Text, StyleSheet } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
-const icons = ['hand-rock', 'hand-paper', 'hand-scissors'];
+const images = [
+    require('../assets/hand-rock.png'),
+    require('../assets/hand-paper.png'),
+    require('../assets/hand-scissors.png'),
+];
 
 const DisplayResult = ({ userChoice, computerChoice }) => {
     return (
-        <>
-            <View style={styles.column}>
-                <FontAwesome5 
-                    name={icons[userChoice - 1]}
-                    size={64}
-                    color='#f9d835'
-                    solid
-                    style={userChoice === 3 ? styles.scissorsLeftIcon : styles.leftIcon}
+        <View style={styles.container}>
+            {/* Computer Section */}
+            <View style={styles.playerSection}>
+                <Text style={styles.playerName}>Komputer</Text>
+                <Image 
+                    source={images[computerChoice - 1]}
+                    style={styles.icon}
                 />
-                <Text style={styles.playerName}>You</Text>
             </View>
 
-            <View style={styles.column}>
-                <FontAwesome5
-                    name={icons[computerChoice - 1]}
-                    size={64}
-                    color="#f9d835"
-                    solid
-                    style={computerChoice === 3 ? styles.scissorsRightIcon : styles.rightIcon}
+            {/* You Section */}
+            <View style={styles.playerSection}>
+                <Image 
+                    source={images[userChoice - 1]}
+                    style={styles.icon}
                 />
-                <Text style={styles.playerName}>Computer</Text>
+                <Text style={styles.playerName}>Kamu</Text>
             </View>
-        </>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    column: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width: '50%', // Ensures each column takes up half of the screen width
+        marginTop: 45,
+    },
+    playerSection: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 5,  // Adjust to bring the sections closer
+        marginTop: 40,
     },
     playerName: {
-        color: '#373737',
-        fontSize: 16,
-        marginTop: 16,
+        color: '#fff',
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginTop: -70,
     },
-    leftIcon: {
-        transform: [{rotateZ: '80deg'}],
-    },
-    scissorsLeftIcon: {
-        transform: [{rotateZ: '180deg'}, {rotateX: '180deg'}],
-    },
-    rightIcon: {
-        transform: [],
-    },
-    scissorsRightIcon: {
-        transform: [{rotateZ: '180deg'}, {rotateY: '180deg'}, {rotateX: '180deg'}],
+    icon: {
+        width: 200,  // Adjust size as needed
+        height: 200, // Adjust size as needed
+        resizeMode: 'contain',
     },
 });
 
