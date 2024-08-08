@@ -4,7 +4,7 @@ import { signOut } from 'firebase/auth';
 import colors from '../themes/colors';
 import { useNavigation } from '@react-navigation/native';
 import RockPaper from '../../components/RockPaper';
-import { auth } from '../../firebaseConfig';  // Import auth correctly
+import { auth } from '../../firebaseConfig';
 
 const MainScreen = () => {
   const navigation = useNavigation();

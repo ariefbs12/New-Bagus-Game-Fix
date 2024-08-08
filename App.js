@@ -3,15 +3,14 @@ import { ActivityIndicator, View, StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Ionicons } from "@expo/vector-icons";
 import { onAuthStateChanged } from "firebase/auth";
 
-import colors from "./src/themes/colors";
 import SplashScreen from "./src/screens/SplashScreen";
 import SignInScreen from "./src/screens/SignInScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import MainScreen from "./src/screens/MainScreen";
-import { auth } from "./firebaseConfig"; // Import auth
+import OnBoardingScreen from "./src/screens/OnBoardingScreen";
+import { auth } from "./firebaseConfig";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,21 +36,19 @@ export default function App() {
           alignItems: "center",
         }}
       >
-        <ActivityIndicator size="small" color={colors.primary.blue} />
+        <ActivityIndicator size="small" color="#0000ff" />
       </View>
     );
   }
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer
-        theme={{ colors: { background: colors.textColors.white } }}
-      >
+      <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Splash"
           screenOptions={{
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: colors.textColors.white },
+            headerStyle: { backgroundColor: "#ffffff" },
           }}
         >
           <Stack.Screen
@@ -61,7 +58,28 @@ export default function App() {
               headerShown: false,
             }}
           />
-          {user ? (
+          <Stack.Screen
+            name="OnBoardingScreen"
+            component={OnBoardingScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SignInScreen"
+            component={SignInScreen}
+            options={{
+              headerTitle: "Sign In",
+            }}
+          />
+          <Stack.Screen
+            name="SignUpScreen"
+            component={SignUpScreen}
+            options={{
+              headerTitle: "Sign Up",
+            }}
+          />
+          {user && (
             <Stack.Screen
               name="MainScreen"
               component={MainScreen}
@@ -69,30 +87,7 @@ export default function App() {
                 headerShown: false,
               }}
             />
-          ) : (
-            <Stack.Screen
-              name="SignInScreen"
-              component={SignInScreen}
-              options={{
-                headerTitle: "Sign In",
-              }}
-            />
           )}
-          <Stack.Screen
-            name="SignUpScreen"
-            component={SignUpScreen}
-            options={({ navigation }) => ({
-              headerTitle: "Sign Up",
-              headerLeft: () => (
-                <Ionicons
-                  name="arrow-back-circle"
-                  size={24}
-                  color={colors.primary.blue}
-                  onPress={() => navigation.goBack()}
-                />
-              ),
-            })}
-          />
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />

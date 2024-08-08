@@ -47,20 +47,20 @@ const SignUpScreen = () => {
         <TextInput
           value={email}
           onChangeText={setEmail}
-          placeholder="masukan email"
+          placeholder="Email"
           style={styles.input}
         />
         <TextInput
           value={password}
           onChangeText={setPassword}
-          placeholder="masukan password"
+          placeholder="Kata Sandi"
           secureTextEntry
           style={styles.input}
         />
         <TextInput
           value={password}
           onChangeText={setPassword}
-          placeholder="masukan ulang password"
+          placeholder="Konfirmasi Kata Sandi"
           secureTextEntry
           style={styles.input}
         />

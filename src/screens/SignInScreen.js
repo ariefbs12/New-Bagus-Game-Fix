@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import colors from "../themes/colors";
 import { useNavigation } from "@react-navigation/native";
-import { auth } from "../../firebaseConfig"; // Import auth from firebaseConfig
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebaseConfig"; // Import auth from firebaseConfig
 
 const SignInScreen = () => {
   const navigation = useNavigation();
@@ -25,7 +25,7 @@ const SignInScreen = () => {
         routes: [{ name: "MainScreen" }], // Updated to match the screen name in App.js
       });
     } catch (error) {
-      console.error(error);
+      console.error("Sign-in Error: ", error.message);
     }
   };
 
@@ -59,13 +59,13 @@ const SignInScreen = () => {
         <TextInput
           value={email}
           onChangeText={setEmail}
-          placeholder="masukan email"
+          placeholder="Email"
           style={styles.input}
         />
         <TextInput
           value={password}
           onChangeText={setPassword}
-          placeholder="masukan password"
+          placeholder="Kata Sandi"
           secureTextEntry
           style={styles.input}
         />

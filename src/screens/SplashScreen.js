@@ -7,7 +7,7 @@ const SplashScreen = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('SignInScreen'); // Automatically navigate to SignInScreen
+      navigation.replace('OnBoardingScreen'); // Navigate to OnBoardingScreen after splash
     }, 3000); // Display splash screen for 3 seconds
 
     // Clear the timeout if the component is unmounted
@@ -16,7 +16,10 @@ const SplashScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/backgroundsplashscreen.png')} style={styles.backgroundsplashscreen} />
+      <Image
+        source={require('../../assets/backgroundsplashscreen.png')}
+        style={styles.backgroundsplashscreen}
+      />
     </View>
   );
 };
