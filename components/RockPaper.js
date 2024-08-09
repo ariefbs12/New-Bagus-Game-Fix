@@ -75,7 +75,7 @@ export default function RockPaper() {
                     </View>
                     <View style={styles.screen}>
                         {!result ? (
-                            <Text style={styles.readyText}> ? </Text>
+                            <Text style={styles.readyText}> Ayo Mainkan! </Text>
                         ) : (
                             <DisplayResult
                                 userChoice={userChoice}

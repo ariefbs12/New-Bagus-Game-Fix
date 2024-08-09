@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Bagus-Game",
-    "slug": "Bagus-Game",
+    "slug": "AuthApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
@@ -19,7 +19,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ariefbs12.Bagus-Game"
+      "package": "com.ariefbs12.AuthApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
