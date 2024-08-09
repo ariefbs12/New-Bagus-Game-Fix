@@ -18,11 +18,11 @@ export default function RockPaper() {
 
         if (choice === randomComputerChoice) {
             result = "SERI!";
-        } else if (
-            (choice === 1 && randomComputerChoice === 3) ||
-            (choice === 2 && randomComputerChoice === 1) ||
-            (choice === 3 && randomComputerChoice === 2)
-        ) {
+        } else if (choice === 1 && randomComputerChoice === 3) {
+            result = "MENANG!";
+        } else if (choice === 2 && randomComputerChoice === 1) {
+            result = "MENANG!";
+        } else if (choice === 3 && randomComputerChoice === 2) {
             result = "MENANG!";
         } else {
             result = "KALAH!";
